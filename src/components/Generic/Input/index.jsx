@@ -1,28 +1,39 @@
-import React from "react";
-import { Container } from "./style";
+import React, { forwardRef } from "react";
+import { Container, Icon, Wrapper } from "./style";
 
-export const Input = ({
-  type,
-  handleClick,
-  placeholder,
-  name,
-  value,
-  defaultValue,
-  width,
-  height,
-}) => {
-  return (
-    <Container
-      defaultValue={defaultValue}
-      value={value}
-      name={name}
-      placeholder={placeholder}
-      onChange={handleClick}
-      type={type}
-      width={width}
-      height={height}
-    />
-  );
-};
+export const Input = forwardRef(
+  (
+    {
+      type,
+      handleClick,
+      placeholder,
+      name,
+      value,
+      defaultValue,
+      width,
+      height,
+      icon,
+    },
+    ref
+  ) => {
+    return (
+      <Wrapper>
+        <Icon>{icon}</Icon>
+        <Container
+          ref={ref}
+          defaultValue={defaultValue}
+          value={value}
+          name={name}
+          placeholder={placeholder}
+          onChange={handleClick}
+          type={type}
+          width={width}
+          height={height}
+          icon={icon}
+        />
+      </Wrapper>
+    );
+  }
+);
 
 export default Input;
