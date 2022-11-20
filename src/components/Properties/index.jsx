@@ -11,14 +11,13 @@ export const Properties = () => {
     fetch(`${url}/houses/list`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setData(res?.data);
       });
-  });
+  }, []);
   return (
     <Container>
       {data.map((value) => {
-        return <HouseCard key={value.id} />;
+        return <HouseCard data={value} key={value.id} />;
       })}
     </Container>
   );

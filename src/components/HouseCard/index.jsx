@@ -2,37 +2,52 @@ import React from "react";
 import { Container, Img, Content, Details, Icons, Divider } from "./style";
 import noimg from "../../assets/img/noimg.jpeg";
 
-const HouseCard = ({ url, title }) => {
+const HouseCard = ({ data = {} }) => {
+  const {
+    city,
+    country,
+    description,
+    houseDetails,
+    price,
+    salePrice,
+    attachments,
+    address,
+  } = data;
+  // console.log(data);
   return (
     <Container>
-      <Img src={url || noimg} />
+      <Img src={(attachments && attachments[0]?.imgPath) || noimg} />
       <Content>
-        <div className="subTitle">{title || "New Apartment Nice View"}</div>
-        <div className="info">Quincy St, Brooklyn, NY, USA</div>
+        <div className="subTitle inline">
+          {city}, {country}, {description}
+        </div>
+        <div className="info">{address || "Unknown"}</div>
         <Details>
           <Details.Item>
             <Icons.Bed />
-            <div className="info">Bed 1</div>
+            <div className="info">Bed {houseDetails?.beds || 0}</div>
           </Details.Item>
           <Details.Item>
             <Icons.Bath />
-            <div className="info">bath 1</div>
+            <div className="info">Bath {houseDetails?.bath || 0}</div>
           </Details.Item>
           <Details.Item>
             <Icons.Car />
-            <div className="info">Garage 1</div>
+            <div className="info">Garage {houseDetails?.garage || 0}</div>
           </Details.Item>
           <Details.Item>
             <Icons.Ruler />
-            <div className="info">Ruler 1</div>
+            <div className="info">
+              Area {houseDetails?.area || 0} m<sup>2</sup>
+            </div>
           </Details.Item>
         </Details>
       </Content>
       <Divider />
       <Content footer>
         <Details.Item footer>
-          <div className="info">$2,800/mo</div>
-          <div className="subTitle">$7,500/mo</div>
+          <div className="info">${salePrice}/mo</div>
+          <div className="subTitle">${price}/mo</div>
         </Details.Item>
         <Details.Item row>
           <Icons.Resize />

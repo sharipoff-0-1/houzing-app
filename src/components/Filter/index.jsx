@@ -2,8 +2,15 @@ import React, { useRef } from "react";
 import { Input, Button } from "../Generic";
 import { Container, Icons, MenuWrapper, Section } from "./style";
 import { Dropdown } from "antd";
+import { uzeReplace } from "../../hooks/useReplace";
+import { useSearch } from "../../hooks/useSearch";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Filter = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const query = useSearch();
+
   const countryRef = useRef();
   const regionRef = useRef();
   const cityRef = useRef();
@@ -16,18 +23,46 @@ export const Filter = () => {
   const maxPriceRef = useRef();
   const minPriceRef = useRef();
 
+  const onChange = ({ target: { name, value } }) => {
+    navigate(`${location?.pathname}${uzeReplace(name, value)}`);
+  };
+
   const menu = (
     <MenuWrapper>
       <h1 className="subTitle">Address</h1>
       <Section>
-        <Input ref={countryRef} placeholder="Country" />
-        <Input ref={regionRef} placeholder="Region" />
-        <Input ref={cityRef} placeholder="City" />
-        <Input ref={zipRef} placeholder="Zip Code" />
+        <Input
+          defaultValue={query.get("country")}
+          handleClick={onChange}
+          ref={countryRef}
+          name="country"
+          placeholder="Country"
+        />
+        <Input
+          defaultValue={query.get("region")}
+          handleClick={onChange}
+          ref={regionRef}
+          name="region"
+          placeholder="Region"
+        />
+        <Input
+          defaultValue={query.get("city")}
+          handleClick={onChange}
+          ref={cityRef}
+          name="city"
+          placeholder="City"
+        />
+        <Input
+          defaultValue={query.get("zip_code")}
+          handleClick={onChange}
+          ref={zipRef}
+          name="zip_code"
+          placeholder="Zip Code"
+        />
       </Section>
       <h1 className="subTitle">Apartment info</h1>
       <Section>
-        <Input ref={roomsRef} placeholder="rooms" />
+        <Input ref={roomsRef} placeholder="Rooms" />
         <Input ref={sortRef} placeholder="Size" />
         <Input ref={sizeRef} placeholder="Sort" />
       </Section>
@@ -36,8 +71,6 @@ export const Filter = () => {
         <Input ref={minPriceRef} placeholder="Min price" />
         <Input ref={maxPriceRef} placeholder="Max price" />
       </Section>
-      <h1 className="subTitle">Footer</h1>
-      <Section></Section>
     </MenuWrapper>
   );
 
@@ -47,10 +80,14 @@ export const Filter = () => {
         icon={<Icons.Houses />}
         placeholder={"Enter an address, neighborhood, city, or ZIP code"}
       />
-      <Dropdown overlay={menu} placement="bottomRight">
+      <Dropdown
+        arrow={{ pointAtCenter: true }}
+        trigger="click"
+        overlay={menu}
+        placement="bottomRight"
+      >
         <div>
           <Button type="light">
-            {" "}
             <Icons.Filter /> Advanced
           </Button>
         </div>
