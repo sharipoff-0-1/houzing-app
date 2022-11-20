@@ -13,7 +13,7 @@ export const Filter = () => {
 
   const countryRef = useRef();
   const regionRef = useRef();
-  const cityRef = useRef();
+  const addressRef = useRef();
   const zipRef = useRef();
 
   const roomsRef = useRef();
@@ -46,11 +46,11 @@ export const Filter = () => {
           placeholder="Region"
         />
         <Input
-          defaultValue={query.get("city")}
+          defaultValue={query.get("address")}
           handleClick={onChange}
-          ref={cityRef}
-          name="city"
-          placeholder="City"
+          ref={addressRef}
+          name="address"
+          placeholder="Address"
         />
         <Input
           defaultValue={query.get("zip_code")}

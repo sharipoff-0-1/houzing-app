@@ -1,10 +1,16 @@
+import React from "react";
 import useId from "../hooks/useId";
-import HomePage from "../pages/Home";
-import PropertiesPage from "../pages/Properties";
+const PropertiesPage = React.lazy(() => import("../pages/Properties"));
+const HomePage = React.lazy(() => import("../pages/Home"));
+
 export const navbar = [
   {
     id: useId,
-    element: <HomePage />,
+    element: (
+      <React.Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
+        <HomePage />
+      </React.Suspense>
+    ),
     title: "Home",
     path: "/home",
     private: false,
@@ -12,7 +18,11 @@ export const navbar = [
   },
   {
     id: useId,
-    element: <PropertiesPage />,
+    element: (
+      <React.Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
+        <PropertiesPage />
+      </React.Suspense>
+    ),
     title: "Properties",
     path: "/properties",
     private: false,

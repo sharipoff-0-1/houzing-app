@@ -12,16 +12,19 @@ const HouseCard = ({ data = {} }) => {
     salePrice,
     attachments,
     address,
+    category,
   } = data;
   // console.log(data);
   return (
     <Container>
       <Img src={(attachments && attachments[0]?.imgPath) || noimg} />
       <Content>
-        <div className="subTitle inline">
+        <div className="subTitle">
           {city}, {country}, {description}
         </div>
-        <div className="info">{address || "Unknown"}</div>
+        <div className="info">
+          {address || "Unknown"} -{category?.name}
+        </div>
         <Details>
           <Details.Item>
             <Icons.Bed />
