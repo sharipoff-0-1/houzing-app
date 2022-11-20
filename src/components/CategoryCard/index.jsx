@@ -4,11 +4,10 @@ import noimg from "../../assets/img/noimg.jpeg";
 import category from "../../assets/img/category.png";
 import { Blur } from "../CategoryCard/style";
 
-const CategoryCard = ({ data = {} }) => {
+const CategoryCard = ({ onClick, data = {} }) => {
   const { name } = data;
-  // console.log(data);
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Img src={category || noimg} />
       <Blur />
       <Content>{name || "Category Name"}</Content>

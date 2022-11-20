@@ -62,3 +62,9 @@ body {
   flex-wrap: nowrap;
   overflow: hidden;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: #0d263b !important;
+  font-size: 25px !important;
+}
