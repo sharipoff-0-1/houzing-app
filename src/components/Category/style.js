@@ -12,27 +12,4 @@ const Container = styled.div`
   margin: auto;
 `;
 
-const Img = styled.img`
-  width: 100%;
-  min-height: 571px;
-`;
-
-const Blur = styled.div`
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-`;
-
-const Content = styled.div`
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  color: #fff;
-`;
-
-export { Container, Img, Blur, Content };
+export { Container };

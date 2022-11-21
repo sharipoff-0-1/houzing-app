@@ -38,7 +38,7 @@ export const GenCarousel = () => {
         {data.map((value) => {
           return (
             <CategoryCard
-              onClick={() => navigate(`/properties?category${value?.name}`)}
+              onClick={() => navigate(`/properties?category${value?.id}`)}
               data={value}
               key={value.id}
             />

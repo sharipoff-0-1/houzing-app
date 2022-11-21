@@ -1,12 +1,17 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input, Button } from "../Generic";
-import { Container, Icons, MenuWrapper, Section } from "./style";
+import { Container, Icons, MenuWrapper, Section, SelectAnt } from "./style";
 import { Dropdown } from "antd";
 import { uzeReplace } from "../../hooks/useReplace";
 import { useSearch } from "../../hooks/useSearch";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export const Filter = () => {
+  const { REACT_APP_BASE_URL: url } = process.env;
+
+  const [data, setData] = useState([]);
+  const [value, setValue] = useState("select");
+
   const navigate = useNavigate();
   const location = useLocation();
   const query = useSearch();
@@ -18,13 +23,33 @@ export const Filter = () => {
 
   const roomsRef = useRef();
   const sortRef = useRef();
-  const sizeRef = useRef();
 
   const maxPriceRef = useRef();
   const minPriceRef = useRef();
 
   const onChange = ({ target: { name, value } }) => {
     navigate(`${location?.pathname}${uzeReplace(name, value)}`);
+  };
+
+  useEffect(() => {
+    fetch(`${url}/categories/list`)
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res?.data || []);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    let [d] = data?.filter(
+      (ctg) => ctg.id === Number(query.get("category_id"))
+    );
+    d?.name && setValue(d?.name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location?.search, data]);
+
+  const onChangeCategory = (category_id) => {
+    navigate(`/properties/${uzeReplace("category_id", category_id)}`);
   };
 
   const menu = (
@@ -64,7 +89,16 @@ export const Filter = () => {
       <Section>
         <Input ref={roomsRef} placeholder="Rooms" />
         <Input ref={sortRef} placeholder="Size" />
-        <Input ref={sizeRef} placeholder="Sort" />
+        {/* <Input ref={sizeRef} placeholder="Sort" /> */}
+        <SelectAnt defaultValue={value} onChange={onChangeCategory}>
+          {data.map((value) => {
+            return (
+              <SelectAnt.Option key={value.id} value={value?.id}>
+                {value?.name}
+              </SelectAnt.Option>
+            );
+          })}
+        </SelectAnt>
       </Section>
       <h1 className="subTitle">Price</h1>
       <Section>
