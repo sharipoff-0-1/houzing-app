@@ -10,7 +10,7 @@ export const Filter = () => {
   const { REACT_APP_BASE_URL: url } = process.env;
 
   const [data, setData] = useState([]);
-  const [value, setValue] = useState("select");
+  const [value, setValue] = useState("Select category");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +22,6 @@ export const Filter = () => {
   const zipRef = useRef();
 
   const roomsRef = useRef();
-  const sortRef = useRef();
 
   const maxPriceRef = useRef();
   const minPriceRef = useRef();
@@ -88,16 +87,20 @@ export const Filter = () => {
       <h1 className="subTitle">Apartment info</h1>
       <Section>
         <Input ref={roomsRef} placeholder="Rooms" />
-        <Input ref={sortRef} placeholder="Size" />
-        {/* <Input ref={sizeRef} placeholder="Sort" /> */}
+        <SelectAnt value="Select sort" onChange={"onChangeSort"}>
+          <SelectAnt.Option value={"asc"}>us</SelectAnt.Option>
+          <SelectAnt.Option value={"des"}>kam</SelectAnt.Option>
+        </SelectAnt>
         <SelectAnt defaultValue={value} onChange={onChangeCategory}>
-          {data.map((value) => {
-            return (
-              <SelectAnt.Option key={value.id} value={value?.id}>
-                {value?.name}
-              </SelectAnt.Option>
-            );
-          })}
+          {data
+            .filter((value) => value.id !== 67)
+            .map((value) => {
+              return (
+                <SelectAnt.Option key={value.id} value={value?.id}>
+                  {value?.name}
+                </SelectAnt.Option>
+              );
+            })}
         </SelectAnt>
       </Section>
       <h1 className="subTitle">Price</h1>
