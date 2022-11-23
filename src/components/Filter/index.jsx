@@ -89,7 +89,7 @@ export const Filter = () => {
       <Section>
         <Input
           name="room"
-          onChange={onChange}
+          handleClick={onChange}
           ref={roomsRef}
           placeholder="Rooms"
         />
@@ -117,13 +117,13 @@ export const Filter = () => {
       <h1 className="subTitle">Price</h1>
       <Section>
         <Input
-          onChange={onChange}
+          handleClick={onChange}
           name="min_price"
           ref={minPriceRef}
           placeholder="Min price"
         />
         <Input
-          onChange={onChange}
+          handleClick={onChange}
           name="max_price"
           ref={maxPriceRef}
           placeholder="Max price"
