@@ -44,11 +44,12 @@ export const Filter = () => {
       (ctg) => ctg.id === Number(query.get("category_id"))
     );
     d?.name && setValue(d?.name);
+    !query.get("category_id") && setValue("Select category");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location?.search, data]);
 
   const onChangeCategory = (category_id) => {
-    navigate(`/properties/${uzeReplace("category_id", category_id)}`);
+    navigate(`/properties${uzeReplace("category_id", category_id)}`);
   };
 
   const menu = (
@@ -86,8 +87,18 @@ export const Filter = () => {
       </Section>
       <h1 className="subTitle">Apartment info</h1>
       <Section>
-        <Input ref={roomsRef} placeholder="Rooms" />
-        <SelectAnt value="Select sort" onChange={"onChangeSort"}>
+        <Input
+          name="room"
+          onChange={onChange}
+          ref={roomsRef}
+          placeholder="Rooms"
+        />
+        <SelectAnt
+          defaultValue={query.get("sort") || "Select Sort"}
+          value="Select sort"
+          onChange={"onChangeSort"}
+        >
+          <SelectAnt.Option value={""}>Default</SelectAnt.Option>
           <SelectAnt.Option value={"asc"}>us</SelectAnt.Option>
           <SelectAnt.Option value={"des"}>kam</SelectAnt.Option>
         </SelectAnt>
@@ -105,8 +116,18 @@ export const Filter = () => {
       </Section>
       <h1 className="subTitle">Price</h1>
       <Section>
-        <Input ref={minPriceRef} placeholder="Min price" />
-        <Input ref={maxPriceRef} placeholder="Max price" />
+        <Input
+          onChange={onChange}
+          name="min_price"
+          ref={minPriceRef}
+          placeholder="Min price"
+        />
+        <Input
+          onChange={onChange}
+          name="max_price"
+          ref={maxPriceRef}
+          placeholder="Max price"
+        />
       </Section>
     </MenuWrapper>
   );
