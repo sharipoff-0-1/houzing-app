@@ -68,3 +68,7 @@ body {
   color: #0d263b !important;
   font-size: 25px !important;
 }
+
+.slick-dots-bottom {
+  width: fit-content;
+}
