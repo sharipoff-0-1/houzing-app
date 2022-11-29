@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "./style";
+import { Container, Content } from "./style";
 import HouseCard from "../HouseCard";
 import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ export const Recommended = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${url}/categories/list`)
+    fetch(`${url}/houses/list`)
       .then((res) => res.json())
       .then((res) => {
         setData(res?.data);
@@ -34,6 +34,12 @@ export const Recommended = () => {
 
   return (
     <Container>
+      <Content>
+        <h1 className="title">Recommended</h1>
+        <h1 className="info">
+          Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
+        </h1>
+      </Content>
       <Slider {...settings}>
         {data.map((value) => {
           return (

@@ -12,4 +12,12 @@ const Container = styled.div`
   margin: auto;
 `;
 
-export { Container };
+const Content = styled.div`
+  margin-top: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+export { Container, Content };

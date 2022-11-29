@@ -8,7 +8,7 @@ import { ReactComponent as love } from "../../assets/icons/love.svg";
 
 const Container = styled.div`
   width: 100%;
-  max-width: 390px;
+  max-width: 340px;
   min-width: 320px;
   height: 430px;
   background: #fff;
