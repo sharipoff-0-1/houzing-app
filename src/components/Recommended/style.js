@@ -10,6 +10,15 @@ const Container = styled.div`
 
   padding: 96px 130px;
   margin: auto;
+  margin-top: 96px;
 `;
 
-export { Container };
+const Content = styled.div`
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+export { Container, Content };
