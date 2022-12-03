@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "./style";
 import HouseCard from "../HouseCard";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const { REACT_APP_BASE_URL: url } = process.env;
 
 export const Properties = () => {
   const [data, setData] = useState([]);
   const { search } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${url}/houses/list${search}`)
@@ -16,10 +17,20 @@ export const Properties = () => {
         setData(res?.data);
       });
   }, [search]);
+
+  const onSelect = (id) => {
+    navigate(`/properties/${id}`);
+  };
   return (
     <Container>
       {data.map((value) => {
-        return <HouseCard data={value} key={value.id} />;
+        return (
+          <HouseCard
+            onClick={() => onSelect(value.id)}
+            data={value}
+            key={value.id}
+          />
+        );
       })}
     </Container>
   );
