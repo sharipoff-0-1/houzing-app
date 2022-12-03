@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Img, Content, Details, Icons, Divider } from "./style";
 import noimg from "../../assets/img/noimg.jpeg";
 
-const HouseCard = ({ data = {}, gap }) => {
+const HouseCard = ({ data = {}, gap, onClick }) => {
   const {
     city,
     country,
@@ -14,9 +14,8 @@ const HouseCard = ({ data = {}, gap }) => {
     address,
     category,
   } = data;
-  // console.log(data);
   return (
-    <Container gap={gap}>
+    <Container gap={gap} onClick={onClick}>
       <Img src={(attachments && attachments[0]?.imgPath) || noimg} />
       <Content>
         <div className="subTitle">
