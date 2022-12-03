@@ -13,12 +13,11 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
+  margin-bottom: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   width: 100%;
-  margin-bottom: 32px;
 `;
 
 export { Container, Content };
