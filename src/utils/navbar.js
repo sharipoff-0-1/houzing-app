@@ -1,5 +1,7 @@
 import React from "react";
 import useId from "../hooks/useId";
+import Signin from "../components/Signin";
+
 const PropertiesPage = React.lazy(() => import("../pages/Properties"));
 const HomePage = React.lazy(() => import("../pages/Home"));
 const HouseItem = React.lazy(() => import("../pages/HouseItem"));
@@ -43,7 +45,7 @@ export const navbar = [
   },
   {
     id: useId,
-    element: <h1>Sign in</h1>,
+    element: <Signin />,
     title: "Sign in",
     path: "/signin",
     private: false,
