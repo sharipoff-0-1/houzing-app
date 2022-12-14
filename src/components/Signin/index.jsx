@@ -1,58 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container, Content } from "./style";
-import HouseCard from "../HouseCard";
-import Slider from "react-slick";
 import { useNavigate } from "react-router-dom";
+import Input from "../Generic/Input";
+import Button from "../Generic/Button";
+import useRequest from "../../hooks/useRequest";
+import { message } from "antd";
 
-const { REACT_APP_BASE_URL: url } = process.env;
-
-const settings = {
-  className: "center",
-  centerMode: true,
-  infinite: true,
-  centerPadding: "60px",
-  slidesToShow: 3,
-  speed: 500,
-  arrows: true,
-  dots: true,
-
-  appendDots: (dots) => <h1>{dots}</h1>,
-};
-
-export const Recent = () => {
-  const [data, setData] = useState([]);
+export const SignIn = () => {
   const navigate = useNavigate();
+  const request = useRequest();
+  const [body, setBody] = useState({});
+  const [erroe, setError] = useState(false);
 
-  useEffect(() => {
-    fetch(`${url}/houses/list`)
-      .then((res) => res.json())
-      .then((res) => {
-        setData(res?.data);
-      });
-  }, []);
-  console.log(data);
+  const onChange = ({ target: { value, placeholder } }) => {
+    setBody({
+      ...body,
+      [placeholder]: value,
+    });
+    setError(false);
+  };
+
+  const info = () => {
+    message.info("Successfully logged in");
+  };
+
+  const onSubmit = async () => {
+    console.log(body);
+    request({ url: `/public/auth/login`, method: "POST", body, me: true }).then(
+      (res) => {
+        if (res?.authenticationToken) {
+          navigate("/home");
+          localStorage.setItem("token", res?.authenticationToken);
+        }
+        info();
+      }
+    );
+  };
 
   return (
     <Container>
       <Content>
-        <h1 className="title">Recent Properties for Rent</h1>
-        <h1 className="info">
-          Nulla quis curabitur velit volutpat auctor bibendum consectetur sit.
-        </h1>
+        <div className="subTitle">Sign in</div>
+        <Input onChange={onChange} placeholder="email" type="email" />
+        <Input onChange={onChange} placeholder="password" type="password" />
+        <Button handleClick={onSubmit} width={"%"}>
+          Log in
+        </Button>
       </Content>
-      <Slider {...settings}>
-        {data.map((value) => {
-          return (
-            <HouseCard
-              gap={10}
-              onClick={() => navigate(`/properties?category${value?.id}`)}
-              data={value}
-              key={value.id}
-            />
-          );
-        })}
-      </Slider>
     </Container>
   );
 };
-export default Recent;
+export default SignIn;
