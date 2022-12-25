@@ -7,8 +7,8 @@ export const Footer = () => {
       <Content>
         <Content.Title>Contact Us</Content.Title>
         <Content.Item>
-          <Icon.Email width /> 329 Queensberry Street, North Melbourne VIC 3051,
-          Australia.
+          <Icon.Location width={"0"} /> 329 Queensberry Street, North Melbourne
+          VIC 3051, Australia.
         </Content.Item>
         <Content.Item>
           {" "}

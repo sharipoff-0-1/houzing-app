@@ -17,6 +17,7 @@ body {
 }
 
 :root {
+  --width: 1440px;
   /* color */
   --colorPrimary: #0d263b;
   --colorSecondary: #696969;
@@ -35,8 +36,6 @@ body {
   font-weight: 600;
   font-size: 24px;
   line-height: 36px;
-
-  text-align: center;
   letter-spacing: -0.02em;
 
   color: #0d263b;

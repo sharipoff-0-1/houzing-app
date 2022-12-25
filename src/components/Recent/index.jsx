@@ -30,7 +30,6 @@ export const Recent = () => {
         setData(res?.data);
       });
   }, []);
-  console.log(data);
 
   return (
     <Container>
@@ -45,7 +44,7 @@ export const Recent = () => {
           return (
             <HouseCard
               gap={10}
-              onClick={() => navigate(`/properties?category${value?.id}`)}
+              onClick={() => navigate(`/properties/${value?.id}`)}
               data={value}
               key={value.id}
             />

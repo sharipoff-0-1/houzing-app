@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as email } from "../../assets/icons/email.svg";
 import { ReactComponent as phone } from "../../assets/icons/phone.svg";
 import { ReactComponent as cardHouse } from "../../assets/icons/cardHouse.svg";
+import { ReactComponent as location } from "../../assets/icons/pinlocation.svg";
 
 const Container = styled.div`
   height: 417px;
@@ -44,6 +45,13 @@ Content.Item = styled.div`
 const Icon = styled.div``;
 
 Icon.Email = styled(email)`
+  margin-right: 21px;
+  width: ${({ width }) => width && `${50}px`};
+  & path {
+    fill: #fff;
+  }
+`;
+Icon.Location = styled(location)`
   margin-right: 21px;
   width: ${({ width }) => width && `${50}px`};
   & path {
