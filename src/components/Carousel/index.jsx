@@ -8,9 +8,7 @@ import img2 from "../../assets/img/house2.png";
 export const GenCarousel = () => {
   const slider = useRef();
 
-  const onChange = (currentSlide) => {
-    console.log(currentSlide);
-  };
+  const onChange = (currentSlide) => {};
 
   const onMove = ({
     target: {

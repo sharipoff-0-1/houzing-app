@@ -10,7 +10,7 @@ export const SignIn = () => {
   const navigate = useNavigate();
   const request = useRequest();
   const [body, setBody] = useState({});
-  const [erroe, setError] = useState(false);
+  const [error, setError] = useState(false);
 
   const onChange = ({ target: { value, placeholder } }) => {
     setBody({
@@ -44,6 +44,7 @@ export const SignIn = () => {
         <Input onChange={onChange} placeholder="email" type="email" />
         <Input onChange={onChange} placeholder="password" type="password" />
         <Button handleClick={onSubmit} width={"%"}>
+          {" "}
           Log in
         </Button>
       </Content>
