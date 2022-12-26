@@ -10,6 +10,19 @@ import { ReactComponent as resize } from "../../assets/icons/resize.svg";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  flex: ${({ flex }) => flex};
+  ~ .user {
+    background: #ffffff;
+    border: 1px solid #e6e9ec;
+    border-radius: 3px;
+    margin-left: 20px;
+    padding: 24px;
+    gap: 24px;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
   margin: auto;
   padding: var(--padding);
   width: 100%;
@@ -45,6 +58,7 @@ Content.Title = styled.h1`
   font-weight: 600;
   font-size: ${({ large }) => (large ? "24px" : "18px")};
   line-height: 32px;
+  margin-top: ${({ mt }) => mt};
 
   letter-spacing: -0.02em;
   color: #0d263b;
@@ -115,4 +129,23 @@ const Description = styled.div`
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
 `;
 
-export { Container, Content, Section, Icons, Details, OldPrice, Description };
+const User = styled.div``;
+
+User.Img = styled.img`
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+
+export {
+  Container,
+  Wrapper,
+  Content,
+  Section,
+  Icons,
+  Details,
+  OldPrice,
+  Description,
+  User,
+};
