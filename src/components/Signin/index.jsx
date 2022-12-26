@@ -10,14 +10,12 @@ export const SignIn = () => {
   const navigate = useNavigate();
   const request = useRequest();
   const [body, setBody] = useState({});
-  const [error, setError] = useState(false);
 
   const onChange = ({ target: { value, placeholder } }) => {
     setBody({
       ...body,
       [placeholder]: value,
     });
-    setError(false);
   };
 
   const info = () => {
@@ -25,7 +23,6 @@ export const SignIn = () => {
   };
 
   const onSubmit = async () => {
-    console.log(body);
     request({ url: `/public/auth/login`, method: "POST", body, me: true }).then(
       (res) => {
         if (res?.authenticationToken) {
