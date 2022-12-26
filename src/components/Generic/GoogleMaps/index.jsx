@@ -23,6 +23,8 @@ export const GoogleMaps = () => {
         style={style}
         bootstrapURLKeys={{
           key: "AIzaSyClMjUz9NMSmpRwI0IYzDBxtM4Qx2pf4Q8",
+          language: "en",
+          region: "en",
           libraries: ["visualization"],
         }}
         defaultCenter={defaultProps.center}
